@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10243a">
+  <script>try{if(localStorage.getItem('temukan-theme')==='dark')document.documentElement.classList.add('dark-theme')}catch(e){}</script>
+  <meta name="description" content="Temukan barang hilang dan bantu teman kampus menemukan kembali barangnya.">
+  <title>TemuKan — Lost & Found Kampus</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Navigasi utama">
+      <a class="brand" href="index.html"><span class="brand-mark">T</span> Temu<span>Kan</span></a>
+      <div class="nav-links"><a class="nav-link active" href="index.html">Beranda</a><a class="nav-link" href="#daftar">Jelajahi</a></div>
+      <div class="nav-actions"><button class="theme-toggle" type="button" aria-label="Aktifkan tema gelap" title="Ganti tema"><span class="theme-icon" aria-hidden="true">☾</span></button><a class="button button-primary nav-cta" href="report.html"><span aria-hidden="true">＋</span> Laporkan Barang</a></div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="status-dot"></span> KOMUNITAS LOST & FOUND KAMPUS</span>
+        <h1>Barang hilang?<br><span>Mungkin ada di sini.</span></h1>
+        <p>Tempat sederhana untuk mempertemukan barang yang hilang dengan pemiliknya. Yuk, bantu sesama warga kampus.</p>
+        <div class="hero-actions"><a class="button button-primary" href="report.html">Laporkan barang <span aria-hidden="true">↗</span></a><a class="text-link" href="#daftar">Lihat daftar barang <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-note"><span class="note-icon">✳</span><span><strong>Temukan, kembalikan, bahagiakan.</strong><br>Setiap bantuan kecil berarti.</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-spark spark-one">✦</div><div class="hero-spark spark-two">✧</div>
+        <div class="hero-card hero-card-main"><span class="hero-card-icon">⌕</span><div><strong>Dicari pemiliknya</strong><small>Barangmu bisa jadi berikutnya</small></div><span class="hero-arrow">↗</span></div>
+        <div class="hero-float float-orange">✦</div><div class="hero-float float-blue">✓</div>
+        <div class="hero-caption">Bersama, kita temukan kembali.</div>
+      </div>
+    </section>
+
+    <section class="stats container" aria-label="Ringkasan komunitas">
+      <div><strong>24</strong><span>barang ditemukan</span></div><div><strong>18</strong><span>kembali ke pemilik</span></div><div><strong>1</strong><span>komunitas kampus</span></div>
+      <div class="stats-message">Kebaikan kecil, dampak besar <span>↗</span></div>
+    </section>
+
+    <section class="listing-section" id="daftar">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">PAPAN PENGUMUMAN</span><h2>Temuan terbaru</h2><p>Siapa tahu, salah satunya barang yang sedang kamu cari.</p></div><a href="report.html" class="text-link desktop-link">Barangmu belum ada? <strong>Laporkan →</strong></a></div>
+        <div class="filter-bar" role="group" aria-label="Filter status barang">
+          <div class="filter-tabs"><button class="filter-button active" type="button" data-filter="semua" aria-pressed="true">Semua <span>6</span></button><button class="filter-button" type="button" data-filter="hilang" aria-pressed="false">Hilang <span>3</span></button><button class="filter-button" type="button" data-filter="ditemukan" aria-pressed="false">Ditemukan <span>3</span></button></div>
+          <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Cari barang..." aria-label="Cari barang"></label>
+        </div>
+        <div class="item-grid" id="itemGrid">
+          <article class="item-card" data-status="hilang" data-search="dompet kulit cokelat dompet kulit cokelat hilang gedung fkip">
+            <a class="item-visual visual-wallet" href="detail.html?id=dompet" aria-label="Lihat detail dompet kulit cokelat"><span class="visual-symbol">▰</span><span class="visual-label">BARANG PRIBADI</span><span class="visual-scribble">?</span></a>
+            <div class="item-content"><div class="item-meta"><span class="tag tag-lost"><i></i> Hilang</span><span class="item-date">Hari ini, 09.20</span></div><h3><a href="detail.html?id=dompet">Dompet kulit cokelat</a></h3><p class="item-location"><span>⌖</span> Gedung FKIP, lantai 2</p><div class="item-footer"><span class="reporter"><span class="avatar avatar-peach">AR</span> Aulia R.</span><a class="card-arrow" href="detail.html?id=dompet" aria-label="Buka detail">↗</a></div></div>
+          </article>
+          <article class="item-card" data-status="ditemukan" data-search="tumbler stainless silver botol ditemukan perpustakaan pusat">
+            <a class="item-visual visual-bottle" href="detail.html?id=tumbler" aria-label="Lihat detail tumbler stainless"><span class="visual-symbol">♜</span><span class="visual-label">BOTOL MINUM</span><span class="visual-scribble">✳</span></a>
+            <div class="item-content"><div class="item-meta"><span class="tag tag-found"><i></i> Ditemukan</span><span class="item-date">Kemarin, 14.05</span></div><h3><a href="detail.html?id=tumbler">Tumbler stainless silver</a></h3><p class="item-location"><span>⌖</span> Perpustakaan pusat</p><div class="item-footer"><span class="reporter"><span class="avatar avatar-mint">DN</span> Dimas N.</span><a class="card-arrow" href="detail.html?id=tumbler" aria-label="Buka detail">↗</a></div></div>
+          </article>
+          <article class="item-card" data-status="hilang" data-search="payung lipat navy payung hilang parkiran fakultas teknik">
+            <a class="item-visual visual-umbrella" href="detail.html?id=payung" aria-label="Lihat detail payung lipat"><span class="visual-symbol">☂</span><span class="visual-label">AKSESORIS</span><span class="visual-scribble">✦</span></a>
+            <div class="item-content"><div class="item-meta"><span class="tag tag-lost"><i></i> Hilang</span><span class="item-date">22 Okt 2026, 16.30</span></div><h3><a href="detail.html?id=payung">Payung lipat warna navy</a></h3><p class="item-location"><span>⌖</span> Parkiran Fakultas Teknik</p><div class="item-footer"><span class="reporter"><span class="avatar avatar-lilac">KM</span> Kiki M.</span><a class="card-arrow" href="detail.html?id=payung" aria-label="Buka detail">↗</a></div></div>
+          </article>
+          <article class="item-card" data-status="ditemukan" data-search="kunci motor gantungan kunci merah found kantin kampus">
+            <a class="item-visual visual-keys" href="detail.html?id=kunci" aria-label="Lihat detail kunci motor"><span class="visual-symbol">⚿</span><span class="visual-label">KUNCI</span><span class="visual-scribble">✳</span></a>
+            <div class="item-content"><div class="item-meta"><span class="tag tag-found"><i></i> Ditemukan</span><span class="item-date">21 Okt 2026, 12.10</span></div><h3><a href="detail.html?id=kunci">Kunci motor, gantungan merah</a></h3><p class="item-location"><span>⌖</span> Kantin kampus</p><div class="item-footer"><span class="reporter"><span class="avatar avatar-yellow">FA</span> Fajar A.</span><a class="card-arrow" href="detail.html?id=kunci" aria-label="Buka detail">↗</a></div></div>
+          </article>
+          <article class="item-card" data-status="hilang" data-search="earphone putih case earphone hilang ruang kelas gedung c">
+            <a class="item-visual visual-earbuds" href="detail.html?id=earphone" aria-label="Lihat detail earphone"><span class="visual-symbol">◖◗</span><span class="visual-label">ELEKTRONIK</span><span class="visual-scribble">?</span></a>
+            <div class="item-content"><div class="item-meta"><span class="tag tag-lost"><i></i> Hilang</span><span class="item-date">20 Okt 2026, 10.45</span></div><h3><a href="detail.html?id=earphone">Earphone putih dalam case</a></h3><p class="item-location"><span>⌖</span> Ruang kelas, Gedung C</p><div class="item-footer"><span class="reporter"><span class="avatar avatar-blue">NL</span> Nadia L.</span><a class="card-arrow" href="detail.html?id=earphone" aria-label="Buka detail">↗</a></div></div>
+          </article>
+          <article class="item-card" data-status="ditemukan" data-search="buku catatan hijau notes notebook ditemukan taman baca">
+            <a class="item-visual visual-book" href="detail.html?id=buku" aria-label="Lihat detail buku catatan"><span class="visual-symbol">▤</span><span class="visual-label">ALAT TULIS</span><span class="visual-scribble">✦</span></a>
+            <div class="item-content"><div class="item-meta"><span class="tag tag-found"><i></i> Ditemukan</span><span class="item-date">19 Okt 2026, 08.15</span></div><h3><a href="detail.html?id=buku">Buku catatan hijau</a></h3><p class="item-location"><span>⌖</span> Taman baca kampus</p><div class="item-footer"><span class="reporter"><span class="avatar avatar-peach">SY</span> Sari Y.</span><a class="card-arrow" href="detail.html?id=buku" aria-label="Buka detail">↗</a></div></div>
+          </article>
+        </div>
+        <div class="empty-state" id="emptyState" hidden><span>⌕</span><h3>Belum ada barang yang cocok</h3><p>Coba kata kunci atau filter yang lain.</p></div>
+        <div class="listing-bottom"><span>Menampilkan <strong id="resultCount">6</strong> dari 6 barang</span><a class="button button-outline" href="report.html">+ Laporkan barang</a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><a class="brand brand-footer" href="index.html"><span class="brand-mark">T</span> Temu<span>Kan</span></a><span>Ruang kecil untuk saling membantu di kampus.</span><span>© 2026 TemuKan</span></div></footer>
+</body>
+</html>

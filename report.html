@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10243a">
+  <title>Lapor Barang — TemuKan</title>
+  <script>try{if(localStorage.getItem('temukan-theme')==='dark')document.documentElement.classList.add('dark-theme')}catch(e){}</script>
+  <link rel="stylesheet" href="assets/css/style.css"><script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><nav class="nav container" aria-label="Navigasi utama"><a class="brand" href="index.html"><span class="brand-mark">T</span> Temu<span>Kan</span></a><div class="nav-links"><a class="nav-link" href="index.html">Beranda</a><a class="nav-link" href="index.html#daftar">Jelajahi</a></div><div class="nav-actions"><button class="theme-toggle" type="button" aria-label="Aktifkan tema gelap" title="Ganti tema"><span class="theme-icon" aria-hidden="true">☾</span></button><a class="button button-primary nav-cta" href="report.html"><span aria-hidden="true">＋</span> Laporkan Barang</a></div></nav></header>
+  <main class="form-page"><div class="container form-layout"><div class="form-intro"><a class="back-link" href="index.html">← Kembali ke beranda</a><span class="eyebrow">BANTU KOMUNITAS KAMPUS</span><h1>Satu laporan,<br><span>satu harapan.</span></h1><p>Semakin jelas informasinya, semakin besar peluang barang kembali ke pemiliknya.</p><div class="form-tip"><span>✳</span><p><strong>Tips laporan yang baik</strong><br>Ceritakan ciri khusus barang dan lokasi terakhir secara detail. Hindari membagikan informasi sensitif.</p></div><div class="form-doodle" aria-hidden="true">⌕</div></div>
+    <section class="form-panel"><div class="form-panel-head"><span class="eyebrow">FORMULIR LAPORAN</span><h2>Detail barang</h2><p>Isi informasi berikut dengan lengkap.</p></div>
+      <form id="reportForm" novalidate>
+        <fieldset class="type-picker"><legend>Jenis laporan <span class="required">*</span></legend><div class="type-options"><label class="type-option"><input type="radio" name="reportType" value="hilang" checked><span class="type-option-card"><span class="type-option-icon">⌕</span><strong>Barang hilang</strong><small>Saya kehilangan barang</small></span></label><label class="type-option"><input type="radio" name="reportType" value="ditemukan"><span class="type-option-card"><span class="type-option-icon">✳</span><strong>Barang ditemukan</strong><small>Saya menemukan barang</small></span></label></div></fieldset>
+        <div class="field"><label for="itemName">Nama barang <span class="required">*</span></label><input id="itemName" name="itemName" type="text" placeholder="Contoh: Dompet kulit warna cokelat" required minlength="3"><small>Sebutkan nama dan ciri umum barang.</small></div>
+        <div class="field"><label for="itemDescription">Deskripsi <span class="required">*</span></label><textarea id="itemDescription" name="itemDescription" rows="3" placeholder="Ceritakan ciri-ciri barang, waktu, atau detail lain..." required minlength="8"></textarea></div>
+        <div class="field"><label for="itemCategory">Kategori <span class="required">*</span></label><select id="itemCategory" name="itemCategory" required><option value="" disabled selected>Pilih kategori</option><option>Elektronik</option><option>Barang pribadi</option><option>Aksesori</option><option>Alat tulis &amp; buku</option><option>Kunci</option><option>Lainnya</option></select></div>
+        <div class="field"><label for="itemImage">Foto barang (opsional)</label><input id="itemImage" name="itemImage" type="file" accept="image/*"><small>Foto akan disimpan di browser perangkat ini.</small><div class="image-preview" id="imagePreview" hidden><img id="imagePreviewPhoto" alt="Pratinjau foto barang"><button type="button" id="removeImage" class="remove-image">Hapus foto</button></div></div>
+        <div class="field-row"><div class="field"><label for="itemLocation">Lokasi <span class="required">*</span></label><input id="itemLocation" name="itemLocation" type="text" placeholder="Contoh: Perpustakaan" required></div><div class="field"><label for="itemDate">Tanggal kejadian <span class="required">*</span></label><input id="itemDate" name="itemDate" type="date" required></div></div>
+        <div class="field-row"><div class="field"><label for="reporterName">Nama kamu <span class="required">*</span></label><input id="reporterName" name="reporterName" type="text" placeholder="Nama panggilan" required></div><div class="field"><label for="contact">Kontak yang bisa dihubungi <span class="required">*</span></label><input id="contact" name="contact" type="text" placeholder="Email atau nomor WA" required></div></div>
+        <p class="form-privacy"><span>♧</span> Kontak hanya digunakan untuk membantu proses pengembalian barang.</p>
+        <button class="button button-primary button-submit" type="submit">Kirim laporan <span>↗</span></button><p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
+      </form>
+    </section></div></main>
+  <footer class="site-footer"><div class="container footer-inner"><a class="brand brand-footer" href="index.html"><span class="brand-mark">T</span> Temu<span>Kan</span></a><span>Ruang kecil untuk saling membantu di kampus.</span><span>© 2026 TemuKan</span></div></footer>
+</body></html>
