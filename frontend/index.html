@@ -1,21 +1,23 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="id">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#10243a">
-  <script>try{if(localStorage.getItem('temukan-theme')==='dark')document.documentElement.classList.add('dark-theme')}catch(e){}</script>
+  <script>tailwind={config:{darkMode:'class',theme:{extend:{colors:{navy:'#10243a','navy-2':'#183650',orange:'#f28a46','orange-dark':'#da7131',ink:'#172a3d',muted:'#758392',line:'#e7ebee',paper:'#fff',soft:'#f7f8f7',mint:'#e7f4ee'},fontFamily:{sans:['DM Sans','Arial','sans-serif'],heading:['Manrope','sans-serif']},maxWidth:{container:'1120px','container-wide':'1320px'}}}}}</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>try{if(localStorage.getItem('temukan-theme')==='dark')document.documentElement.classList.add('dark','dark-theme')}catch(e){}</script>
   <meta name="description" content="Temukan barang hilang dan bantu teman kampus menemukan kembali barangnya.">
   <title>TemuKan — Lost & Found Kampus</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/main.js" defer></script>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav container" aria-label="Navigasi utama">
-      <a class="brand" href="index.html"><span class="brand-mark">T</span> Temu<span>Kan</span></a>
-      <div class="nav-links"><a class="nav-link active" href="index.html">Beranda</a><a class="nav-link" href="#daftar">Jelajahi</a></div>
-      <div class="nav-actions"><button class="theme-toggle" type="button" aria-label="Aktifkan tema gelap" title="Ganti tema"><span class="theme-icon" aria-hidden="true">☾</span></button><a class="button button-primary nav-cta" href="report.html"><span aria-hidden="true">＋</span> Laporkan Barang</a></div>
+  <header class="h-[78px] border-b border-[#eff1f2] bg-white dark:border-[#30404e] dark:bg-[#192633] max-[580px]:h-[66px] min-[1500px]:h-[88px]">
+    <nav class="mx-auto flex h-full w-[min(1120px,calc(100%-56px))] items-center justify-between max-[800px]:w-[calc(100%-36px)] max-[580px]:w-[calc(100%-32px)] min-[1500px]:w-[min(1320px,calc(100%-56px))]" aria-label="Navigasi utama">
+      <a class="flex items-center gap-[3px] font-heading text-xl font-extrabold tracking-[-1px] text-navy dark:text-slate-100" href="index.html"><span class="mr-[7px] grid h-[29px] w-[29px] place-items-center rounded-[9px] bg-orange text-[15px] tracking-normal text-white">T</span> Temu<span class="text-orange">Kan</span></a>
+      <div class="ml-[75px] flex items-center gap-[34px] max-[800px]:ml-0 max-[800px]:gap-[18px] max-[580px]:hidden"><a class="text-[13px] font-semibold text-navy dark:text-slate-200" href="index.html">Beranda</a><a class="text-[13px] font-semibold text-[#788391] transition-colors hover:text-navy dark:text-slate-400 dark:hover:text-white" href="#daftar">Jelajahi</a></div>
+      <div class="flex items-center gap-3"><button class="grid h-[38px] w-[38px] place-items-center rounded-full border border-[#e7ebee] bg-white text-lg text-ink transition-transform hover:rotate-[-12deg] hover:border-orange dark:border-[#30404e] dark:bg-[#192633] dark:text-slate-100" data-theme-toggle type="button" aria-label="Aktifkan tema gelap" title="Ganti tema"><span class="theme-icon" aria-hidden="true">☾</span></button><a class="inline-flex min-h-[40px] items-center gap-3 rounded-[7px] bg-navy px-4 text-xs font-bold text-white transition hover:-translate-y-px hover:bg-[#203e58] dark:bg-orange dark:text-navy" href="report.html"><span class="text-lg font-normal text-[#f6a16c]" aria-hidden="true">＋</span> Laporkan Barang</a></div>
     </nav>
   </header>
 

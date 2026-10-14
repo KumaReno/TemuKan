@@ -1,0 +1,7 @@
+﻿# Dependencies and local-only files
+.env
+.env.*
+!.env.example
+node_modules/
+.DS_Store
+Thumbs.db
