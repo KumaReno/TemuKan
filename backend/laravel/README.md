@@ -1,66 +1,79 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TemuKan Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi papan informasi barang hilang dan ditemukan di lingkungan kampus. Versi Laravel ini memakai SQLite, Eloquent, Blade, validasi request, dan REST API.
 
-## About Laravel
+## Menjalankan aplikasi
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Dari folder `backend/laravel`:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```bash
+composer install
+php artisan migrate --seed
+php artisan storage:link
+php artisan serve
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Buka alamat yang dicetak oleh `php artisan serve`. Pastikan `.env` sudah menunjuk ke database yang benar. Database SQLite lokal berada di `database/database.sqlite`.
 
-## Learning Laravel
+## Fitur web
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Method | URL | Fungsi |
+| --- | --- | --- |
+| `GET` | `/reports` | Melihat daftar laporan |
+| `GET` | `/reports/create` | Membuka formulir laporan |
+| `POST` | `/reports` | Menyimpan laporan baru |
+| `GET` | `/reports/{report}/edit` | Membuka formulir edit |
+| `PUT` | `/reports/{report}` | Memperbarui laporan |
+| `DELETE` | `/reports/{report}` | Menghapus laporan |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Alamat `/` mengarahkan pengguna ke `/reports`.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## REST API
 
-## Laravel Sponsors
+Semua endpoint API menggunakan awalan `/api`. Kirim header `Accept: application/json` agar respons validasi dan error dikembalikan sebagai JSON.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Method | Endpoint | Respons sukses |
+| --- | --- | --- |
+| `GET` | `/api/reports` | `200`, daftar berpaginasi |
+| `POST` | `/api/reports` | `201`, laporan yang dibuat |
+| `GET` | `/api/reports/{report}` | `200`, detail laporan |
+| `PUT` / `PATCH` | `/api/reports/{report}` | `200`, laporan yang diperbarui |
+| `DELETE` | `/api/reports/{report}` | `200`, pesan penghapusan |
 
-### Premium Partners
+### Field laporan
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+| Field | Aturan |
+| --- | --- |
+| `category_id` | Wajib, kategori harus tersedia |
+| `name` | Wajib, 3–100 karakter |
+| `status` | Wajib, `hilang` atau `ditemukan` |
+| `description` | Wajib, 8–2000 karakter |
+| `location` | Wajib, 2–150 karakter |
+| `event_date` | Wajib, tanggal hari ini atau sebelumnya (`YYYY-MM-DD`) |
+| `reporter_name` | Wajib, 2–100 karakter |
+| `contact` | Opsional, maksimal 255 karakter |
+| `image` | Opsional, JPG/PNG/WebP maksimal 2 MB |
+| `remove_image` | Opsional untuk update, boolean |
 
-## Contributing
+Contoh body JSON untuk membuat laporan:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```json
+{
+  "category_id": 1,
+  "name": "Dompet kulit cokelat",
+  "status": "hilang",
+  "description": "Dompet kulit cokelat tertinggal di sekitar perpustakaan.",
+  "location": "Perpustakaan pusat",
+  "event_date": "2026-11-25",
+  "reporter_name": "Aulia R.",
+  "contact": "aulia@example.com"
+}
+```
 
-## Code of Conduct
+Contoh pengujian dengan `curl`:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+curl -H "Accept: application/json" http://127.0.0.1:8000/api/reports
+```
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Validasi yang gagal mengembalikan status `422`, ID yang tidak ditemukan mengembalikan `404`, dan upload gambar API dapat dikirim memakai `multipart/form-data`. Gambar disimpan pada disk `public`; jalankan `php artisan storage:link` agar bisa ditampilkan.

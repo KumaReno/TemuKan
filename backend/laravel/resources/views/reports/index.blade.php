@@ -65,9 +65,9 @@
                 <button class="grid h-[38px] w-[38px] place-items-center rounded-full border border-[#e7ebee] bg-white text-lg text-ink transition-transform hover:rotate-[-12deg] hover:border-orange dark:border-[#30404e] dark:bg-[#192633] dark:text-slate-100" data-theme-toggle type="button" aria-label="Aktifkan tema gelap" title="Ganti tema">
                     <span class="theme-icon" aria-hidden="true">☾</span>
                 </button>
-                <a class="inline-flex min-h-[40px] items-center gap-3 rounded-[7px] bg-navy px-4 text-xs font-bold text-white transition hover:-translate-y-px hover:bg-[#203e58] dark:bg-orange dark:text-navy" href="#daftar">
+                <a class="inline-flex min-h-[40px] items-center gap-3 rounded-[7px] bg-navy px-4 text-xs font-bold text-white transition hover:-translate-y-px hover:bg-[#203e58] dark:bg-orange dark:text-navy" href="{{ route('reports.create') }}">
                     <span class="text-lg font-normal text-[#f6a16c]" aria-hidden="true">＋</span>
-                    Lihat Laporan
+                    Laporkan Barang
                 </a>
             </div>
         </nav>
@@ -113,6 +113,9 @@
 
         <section class="listing-section" id="daftar">
             <div class="container">
+                @if (session('success'))
+                    <p class="form-feedback" role="status">{{ session('success') }}</p>
+                @endif
                 <div class="section-heading">
                     <div>
                         <span class="eyebrow">PAPAN PENGUMUMAN</span>
@@ -155,8 +158,12 @@
                             ]));
                         @endphp
                         <article class="item-card" data-number="{{ $index + 1 }}" data-status="{{ $report->status }}" data-search="{{ $searchText }}">
-                            <div class="item-visual {{ $visualClass }}" aria-hidden="true">
-                                <span class="visual-symbol">{{ $symbol }}</span>
+                            <div class="item-visual {{ $visualClass }}">
+                                @if ($report->image_path)
+                                    <img class="uploaded-item-image" src="{{ asset('storage/'.$report->image_path) }}" alt="Foto {{ $report->name }}" loading="lazy">
+                                @else
+                                    <span class="visual-symbol">{{ $symbol }}</span>
+                                @endif
                                 <span class="visual-label">{{ $categoryName }}</span>
                                 <span class="visual-scribble">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span>
                             </div>
@@ -169,7 +176,14 @@
                                 <p class="item-location"><span>⌖</span> {{ $report->location }}</p>
                                 <div class="item-footer">
                                     <span class="reporter"><span class="avatar avatar-peach">{{ collect(explode(' ', $report->reporter_name))->map(fn ($part) => mb_substr($part, 0, 1))->take(2)->implode('') }}</span> {{ $report->reporter_name }}</span>
-                                    <span class="card-arrow" aria-hidden="true">↗</span>
+                                    <div class="flex items-center gap-2">
+                                        <a class="text-xs font-semibold text-navy hover:text-orange dark:text-slate-200" href="{{ route('reports.edit', $report) }}">Edit</a>
+                                        <form action="{{ route('reports.destroy', $report) }}" method="post" onsubmit="return confirm('Hapus laporan ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="text-xs font-semibold text-red-600 hover:text-red-800" type="submit">Hapus</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </article>
@@ -190,7 +204,7 @@
                     </div>
                     <div class="listing-bottom">
                         <span>Menampilkan <strong id="resultCount">{{ $reports->count() }}</strong> dari {{ $reports->count() }} barang</span>
-                        <a class="button button-outline" href="#daftar">Jelajahi laporan</a>
+                        <a class="button button-outline" href="{{ route('reports.create') }}">Buat laporan</a>
                     </div>
                 @endif
             </div>
