@@ -80,6 +80,13 @@
 
   async function loadItems() {
     if (!grid) return;
+    // The PHP page already rendered its item cards on the server. Keep the
+    // Fetch API demo as a fallback for grids that do not contain SSR content.
+    if (grid.dataset.ssrGrid === 'true') {
+      readReports().forEach(addReportCard);
+      updateCards();
+      return;
+    }
     grid.textContent = 'Mengambil data barang...';
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=6');
@@ -162,7 +169,7 @@
       reports.unshift(item);
       localStorage.setItem(REPORTS_KEY, JSON.stringify(reports));
       feedback.textContent = 'Laporan berhasil disimpan di perangkat ini. Membuka daftar barang…';
-      window.setTimeout(() => { location.href = 'index.html#daftar'; }, 900);
+      window.setTimeout(() => { location.href = 'index.php#daftar'; }, 900);
     } catch (error) {
       feedback.textContent = 'Penyimpanan penuh. Coba gunakan foto yang lebih kecil atau hapus beberapa laporan tersimpan.';
     }

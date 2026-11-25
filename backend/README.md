@@ -1,14 +1,18 @@
 ﻿# Backend TemuKan
 
-Backend belum dibuat. Folder ini disiapkan sebagai batas terpisah untuk API server.
+Server-side rendering TemuKan berada di sini.
 
-Rancangan awal yang disarankan:
+- `public/index.php`: entry point beranda SSR.
+- `router.php`: mengarahkan `/` ke entry point PHP dan mengembalikan permintaan aset statis ke PHP built-in server.
+- `src/controllers/HomeController.php`: menangani alur request beranda, meminta data, dan meneruskannya ke view.
+- `src/models/Item.php`: model barang dengan property privat, constructor, getter, dan method perilaku.
+- `src/models/ItemRepository.php`: mengambil kumpulan data barang untuk controller.
+- `src/data/items.php`: kumpulan object `Item` untuk data contoh.
+- `src/views/home.php`: halaman beranda yang membentuk HTML.
+- `src/views/item-cards.php`: partial yang merender kartu melalui method object `Item`.
 
-- `src/routes/`: endpoint, misalnya `/api/items` dan `/api/claims`.
-- `src/controllers/`: validasi request dan penyusunan response.
-- `src/services/`: aturan bisnis Lost and Found.
-- `src/models/`: akses data.
-- `src/middleware/`: autentikasi, validasi, dan error handling.
-- `src/config/`: konfigurasi aplikasi dan database.
+Alur beranda adalah `router.php` → `public/index.php` → `HomeController` → `ItemRepository` → `home.php`. Form laporan masih menyimpan data di localStorage browser. Belum ada database atau API multi-pengguna.
 
-Pilih stack (misalnya PHP prosedural untuk tugas kuliah, atau Node.js/Express untuk API terpisah) sebelum menambahkan implementasi. Jangan menyimpan secret di Git; gunakan `.env` lokal dan commit contoh variabel tanpa nilainya.
+## Aplikasi Laravel
+
+Aplikasi Laravel terpisah berada di `laravel/`. Jalankan dengan `cd backend/laravel` lalu `php artisan serve`. Route beranda memakai `ReportController@index`, mengambil laporan dari SQLite melalui model Eloquent, lalu menampilkannya pada `resources/views/reports/index.blade.php`. Migration tambahan menaruh field TemuKan pada tabel `categories` dan `reports`; data demo diisi melalui `php artisan db:seed --class=TemuKanSeeder`.
