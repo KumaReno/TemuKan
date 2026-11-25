@@ -1,0 +1,18 @@
+ backend/laravel/README.md                          | 145 [32m+++++++++++[m[31m----------[m
+ .../app/Http/Controllers/Api/ReportController.php  |  83 [32m++++++++++++[m
+ .../app/Http/Controllers/ReportController.php      |  81 [32m+++++++++++[m[31m-[m
+ .../app/Http/Requests/StoreReportRequest.php       |  63 [32m+++++++++[m
+ .../app/Http/Requests/UpdateReportRequest.php      |  18 [32m+++[m
+ .../laravel/app/Http/Resources/ReportResource.php  |  32 [32m+++++[m
+ .../laravel/app/Services/ReportImageStorage.php    |  21 [32m+++[m
+ backend/laravel/bootstrap/app.php                  |   1 [32m+[m
+ backend/laravel/public/css/temukan.css             |   1 [32m+[m
+ .../resources/views/reports/create.blade.php       |  43 [32m++++++[m
+ .../laravel/resources/views/reports/edit.blade.php |  43 [32m++++++[m
+ .../resources/views/reports/index.blade.php        |  26 [32m+++[m[31m-[m
+ .../views/reports/partials/footer.blade.php        |   7 [32m+[m
+ .../views/reports/partials/form.blade.php          |  84 [32m++++++++++++[m
+ .../views/reports/partials/header.blade.php        |  14 [32m++[m
+ backend/laravel/routes/api.php                     |   7 [32m+[m
+ backend/laravel/routes/web.php                     |   4 [32m+[m[31m-[m
+ 17 files changed, 597 insertions(+), 76 deletions(-)

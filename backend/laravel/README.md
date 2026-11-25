@@ -15,6 +15,8 @@ php artisan serve
 
 Buka alamat yang dicetak oleh `php artisan serve`. Pastikan `.env` sudah menunjuk ke database yang benar. Database SQLite lokal berada di `database/database.sqlite`.
 
+Untuk JWT, isi `.env` dengan `JWT_SECRET` acak minimal 32 karakter, `JWT_TTL_MINUTES=60`, serta `JWT_TEST_USER_EMAIL` dan `JWT_TEST_USER_PASSWORD` untuk akun uji lokal. Jangan commit `.env`. Seeder akun JWT hanya berjalan saat `APP_ENV=local`.
+
 ## Fitur web
 
 | Method | URL | Fungsi |
@@ -32,13 +34,29 @@ Alamat `/` mengarahkan pengguna ke `/reports`.
 
 Semua endpoint API menggunakan awalan `/api`. Kirim header `Accept: application/json` agar respons validasi dan error dikembalikan sebagai JSON.
 
+Login adalah endpoint publik. Endpoint laporan membutuhkan header `Authorization: Bearer <access_token>` yang didapat dari login.
+
 | Method | Endpoint | Respons sukses |
 | --- | --- | --- |
-| `GET` | `/api/reports` | `200`, daftar berpaginasi |
-| `POST` | `/api/reports` | `201`, laporan yang dibuat |
-| `GET` | `/api/reports/{report}` | `200`, detail laporan |
-| `PUT` / `PATCH` | `/api/reports/{report}` | `200`, laporan yang diperbarui |
-| `DELETE` | `/api/reports/{report}` | `200`, pesan penghapusan |
+| `POST` | `/api/login` | `200`, access token dan data pengguna |
+| `GET` | `/api/reports` | `200`, daftar berpaginasi; perlu token |
+| `POST` | `/api/reports` | `201`, laporan yang dibuat; perlu token |
+| `GET` | `/api/reports/{report}` | `200`, detail laporan; perlu token |
+| `PUT` / `PATCH` | `/api/reports/{report}` | `200`, laporan yang diperbarui; perlu token |
+| `DELETE` | `/api/reports/{report}` | `200`, pesan penghapusan; perlu token |
+
+Contoh body untuk login memakai akun lokal dari `.env`:
+
+```json
+{
+  "email": "email-uji-dari-env",
+  "password": "password-uji-dari-env"
+}
+```
+
+Login berhasil mengembalikan `access_token`, `token_type` (`Bearer`), `expires_in`, dan data pengguna. Untuk request laporan, pasang token melalui tab **Authorization → Bearer Token** di Postman. Token berlaku sesuai `JWT_TTL_MINUTES`.
+
+Tanpa token, token keliru, atau token kedaluwarsa, API laporan mengembalikan `401`. Token valid dapat memakai endpoint CRUD seperti biasa.
 
 ### Field laporan
 
